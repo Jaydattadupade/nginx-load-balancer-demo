@@ -61,7 +61,7 @@ docker compose up -d --build --no-deps app3
  
 ## Live demo
  
-Deployed on a single EC2 instance. The page shows which container answered the request, and `/health` confirms that instance is up:
+Deployed on a single EC2 instance. The page shows which container answered the request, and `/health` confirms that the instance is up:
  
 ![Load balancer demo showing app3 serving the request](./screenshots/live-demo.png)
  
