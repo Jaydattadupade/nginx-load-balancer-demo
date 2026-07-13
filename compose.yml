@@ -1,0 +1,42 @@
+services:
+  app1:
+    build:
+      context: .
+    container_name: lb-app1
+    expose:
+      - "5000"
+    restart: unless-stopped
+    environment:
+      - APP_NAME=app1
+  app2:
+    build:
+      context: .
+    container_name: lb-app2
+    expose:
+      - "5000"
+    restart: unless-stopped
+    environment:
+      - APP_NAME=app2
+  app3:
+    build:
+      context: .
+    container_name: lb-app3
+    expose:
+      - "5000"
+    restart: unless-stopped
+    environment:
+      - APP_NAME=app3
+
+  nginx:
+    image: nginx:alpine
+    container_name: web_proxy
+    depends_on:
+      - app1
+      - app2
+      - app3
+    restart: unless-stopped
+    volumes:
+      - ./nginx.conf:/etc/nginx/nginx.conf
+    ports:
+      - "80:80"
+
